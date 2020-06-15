@@ -69,7 +69,15 @@ async def trleave(ctx):
 
     await ctx.voice_client.disconnect()
 
+#error messages for unknown commands
 
+@bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send('Please provide all required arguments.')
+    elif isinstance(error, commands.CommandNotFound):
+        await ctx.send('Invalid command used.')
+#end error messages
 #Cog start
 @bot.command()
 @commands.has_permissions(manage_channels=True)
