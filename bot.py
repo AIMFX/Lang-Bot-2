@@ -5,7 +5,7 @@ from gtts import gTTS
 import languages
 import asyncio
 import os
-
+import logging
 
 #Bot by Coby Hong using discord.py and free google translate API for Python.
 #Welcome to edit and use code as long as some form of credit is given.
@@ -30,11 +30,10 @@ import os
 # hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
 # hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
 
-
 #bot initialization.
 token = os.environ.get('BOT_TOKEN')
 bot = commands.Bot(command_prefix='!')
-
+logging.basicConfig(level=logging.INFO)
 
 #Google translate initialization.
 translator = Translator()
@@ -55,7 +54,7 @@ async def trjoin(ctx):
     #                 value="Joining your channel...",
     #                 inline=True)
     # await ctx.send(embed=embed)
-    
+
     await ctx.author.voice.channel.connect()
 
 
@@ -69,6 +68,28 @@ async def trleave(ctx):
     # await ctx.send(embed=embed)
 
     await ctx.voice_client.disconnect()
+
+
+#Cog start
+@bot.command()
+@commands.has_permissions(manage_channels=True)
+async def load(ctx, extension):
+    bot.load_extension(f'cogs.{extension}')
+
+@bot.command()
+@commands.has_permissions(manage_channels=True)
+async def unload(ctx, extension):
+    bot.unload_extension(f'cogs.{extension}')
+
+#@commands.has_permissions(manage_channels=True)
+#async def reload(ctx, extension):
+#    bot.unload_extension(f'cogs.{extension}')
+#    bot.load_extension(f'cogs.{extension}')
+
+for filename in os.listdir('./cogs'):
+    if filename.endswith('.py'):
+        bot.load_extension(f'cogs.{filename[:-3]}')
+#Cog end
 
 
 #bot help command.
@@ -172,7 +193,7 @@ def invalid_usage(message, language):
     return embed
 
 
-#returns invalid language message input string based upon user's own language.  
+#returns invalid language message input string based upon user's own language.
 def invalid_input(message, language):
     invalid_msg = "Invalid language input.\nPlease try again!"
     translated_invalid_msg = translator.translate(invalid_msg, language).text
@@ -194,4 +215,3 @@ def message_format(ctx, original_message, translated_message):
 
 
 bot.run(str(token))
-
