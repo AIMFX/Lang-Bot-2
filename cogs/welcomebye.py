@@ -36,10 +36,10 @@ class Welcomebye(commands.Cog):
         embedit0 = discord.Embed(title = "Welcome to " + member.guild.name, colour=discord.Colour(0x87a04a), url="",description="The main language here is english. If you are in contact with an Arena member who is not already with us, please invite. :pray:\n\nMay we add your Arena payout time (GMT) to the list at <#712293077670166528> ?")
 
         embedit0.set_image(url = member.avatar_url)
-        embedit0.set_thumbnail(url = member.guild.icon_url)
+        #embedit0.set_thumbnail(url = member.guild.icon_url)
         embedit0.set_author(name = member.name, url="", icon_url = member.avatar_url)
         #embedit0.set_footer(text = "You joined us " + datetime.now().strftime('%d-%m-%Y %H:%M:%S') , icon_url = member.guild.icon_url)
-        embedit0.set_footer(text = "Joined us " + datetime.now().strftime('%d-%m-%Y %H:%M:%S') , icon_url = "https://discord.com/assets/28174a34e77bb5e5310ced9f95cb480b.png")
+        #embedit0.set_footer(text = "Joined us " + datetime.now().strftime('%d-%m-%Y %H:%M:%S') , icon_url = "https://discord.com/assets/28174a34e77bb5e5310ced9f95cb480b.png")
 
         await channel.send(embed = embedit0)
 
