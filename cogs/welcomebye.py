@@ -40,7 +40,6 @@ class Welcomebye(commands.Cog):
         embedit0.set_author(name = member.name, url="", icon_url = member.avatar_url)
         #embedit0.set_footer(text = "You joined us " + datetime.now().strftime('%d-%m-%Y %H:%M:%S') , icon_url = member.guild.icon_url)
         #embedit0.set_footer(text = "Joined us " + datetime.now().strftime('%d-%m-%Y %H:%M:%S') , icon_url = "https://discord.com/assets/28174a34e77bb5e5310ced9f95cb480b.png")
-
         await channel.send(embed = embedit0)
 
 def setup(bot):
