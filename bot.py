@@ -222,4 +222,4 @@ def message_format(ctx, original_message, translated_message):
     return embed
 
 
-bot.run(str(token))
+bot.run(str(token)) #
