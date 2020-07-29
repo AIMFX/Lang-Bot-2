@@ -221,5 +221,5 @@ def message_format(ctx, original_message, translated_message):
                     inline=True)
     return embed
 
-
-bot.run(str(token)) #
+print(os.environ['BOT_TOKEN'])
+bot.run(token)
